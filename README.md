@@ -1,4 +1,4 @@
-# LexTrade - 词易
+# LexDDD - 词易Python基座
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.8-green.svg)](https://fastapi.tiangolo.com/)
