@@ -1,14 +1,49 @@
-# Lex_DDD
+# LexTrade - 词易
 
-采用DDD架构的基础框架，非常好的ai适应性，可用于ai快速开发后端
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115.8-green.svg)](https://fastapi.tiangolo.com/)
+[![Poetry](https://img.shields.io/badge/Poetry-Package%20Manager-blue)](https://python-poetry.org/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0.38-red)](https://www.sqlalchemy.org/)
 
-`微信交流群：wx_0xbcyuncen`
+## 项目简介
 
-使用poetry作为包管理工具，默认支持 `.env` 环境变量配置
+LexTrade（词易）是一个基于领域驱动设计（DDD）架构的后端系统。项目采用现代化的技术栈和架构设计，旨在提供高性能、可维护和可扩展的服务。
 
-## 项目架构
+## 技术架构
 
-项目采用领域驱动设计（DDD）架构，分为以下几层：
+### 领域驱动设计 (DDD)
+
+项目严格遵循DDD架构原则，将系统分为以下核心层次：
+
+- **领域层 (Domain Layer)**
+  - 包含核心业务逻辑和实体
+  - 定义领域模型和业务规则
+  - 实现领域服务和值对象
+
+- **应用层 (Application Layer)**
+  - 协调领域对象以完成用例
+  - 处理事务管理
+  - 实现应用服务
+
+- **基础设施层 (Infrastructure Layer)**
+  - 提供技术实现
+  - 处理数据持久化
+  - 集成外部服务
+
+- **接口层 (Interface Layer)**
+  - 定义API接口
+  - 处理请求响应
+  - 实现路由管理
+
+### 技术栈
+
+- **Web框架**: FastAPI 0.115.8
+- **ORM**: SQLAlchemy 2.0.38
+- **数据库**: MySQL
+- **包管理**: Poetry
+- **API文档**: Swagger/OpenAPI
+
+## 项目结构
 
 ```
 src/
@@ -18,46 +53,63 @@ src/
 └── interfaces/      # 接口层：API接口和路由定义
 ```
 
-### 分层说明
+## 环境配置
 
-1. **领域层 (Domain Layer)**
-   - 定义核心业务实体和值对象
-   - 实现领域服务和业务规则
-   - 定义仓储接口
+### 前置要求
 
-2. **应用层 (Application Layer)**
-   - 实现应用服务和用例
-   - 协调领域对象
-   - 处理事务和业务流程
+- Python 3.11+
+- Poetry
+- MySQL
 
-3. **基础设施层 (Infrastructure Layer)**
-   - 实现持久化机制
-   - 提供外部服务集成
-   - 处理技术细节（日志、缓存等）
+### 安装依赖
 
-4. **接口层 (Interfaces Layer)**
-   - 提供API接口
-   - 处理请求和响应
-   - 实现路由和控制器
+```bash
+# 安装项目依赖
+poetry install
 
-## 技术栈
+# 激活虚拟环境
+poetry shell
+```
 
-### 后端框架和工具
-- **Web框架**：FastAPI 0.115.x
-  - 高性能异步API框架
-  - 自动API文档生成
-  - 请求验证和序列化
+### 环境变量配置
 
-- **数据库和ORM**
-  - MySQL 5.6+
-  - SQLAlchemy 2.0+ (异步ORM)
+创建 `.env` 文件并配置以下环境变量：
 
-- **依赖管理**
-  - Poetry（包管理和虚拟环境）
-  - Python 3.11+
+```env
+# 调试模式
+LEX_DEBUG=True
 
-### 开发工具和规范
+# 数据库设置
+LEX_DATABASE_URL=mysql+aiomysql://user:password@localhost:3306/lextrade
+```
 
-- **API文档**
-  - Swagger UI（/docs）
-  - ReDoc（/redoc）
+## 启动服务
+
+```bash
+# 启动开发服务器
+uvicorn main:app --reload
+```
+
+启动后可访问：
+- API文档：http://localhost:8000/docs
+- 交互式API文档：http://localhost:8000/redoc
+
+## 数据库迁移
+
+使用 SQLAlchemy 生成数据库模型：
+
+```bash
+sqlacodegen --outfile ./src/domain/models.py mysql://user:password@localhost:3306/lextrade
+```
+
+## 开发规范
+
+- 遵循PEP 8编码规范
+- 使用类型注解
+- 编写单元测试
+- 保持领域层的纯粹性
+- 遵循DDD设计原则
+
+## 许可证
+
+[Apache License 2.0](LICENSE)
