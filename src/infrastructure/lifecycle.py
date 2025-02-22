@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     """
 
     if settings.DEBUG:
-        print("\033[93m请注意！！！当前为调试模式！！！请勿在生产环境中运行！！！\033[0m")
+        print("\033[93m请注意！！！当前为调试模式！！！切勿在生产环境中运行！！！\033[0m")
     else:
         print("\033[92m调试模式已关闭！！！\033[0m")
 

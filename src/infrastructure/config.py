@@ -20,6 +20,5 @@ class Settings():
     DEBUG: bool = os.getenv("LEX_DEBUG") # 是否开启调试模式
     DATABASE_URL: str = os.getenv("LEX_DATABASE_URL") # 数据库设置
 
+# 创建配置类实例
 settings = Settings()
-
-print(settings.DEBUG)
