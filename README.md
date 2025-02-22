@@ -7,7 +7,13 @@
 
 ## 项目简介
 
-LexTrade（词易）是一个基于领域驱动设计（DDD）架构的网站、后端开发基座。项目采用现代化的技术栈和架构设计，旨在提供高性能、可维护和可扩展的服务。
+LexDDD 是一个基于领域驱动设计（DDD）架构的后端开发基座。项目采用现代化的技术栈和架构设计，提供高性能、可维护和可扩展。
+
+- 遵循PEP 8编码规范
+- 使用类型注解
+- 编写单元测试
+- 保持领域层的纯粹性
+- 遵循DDD设计原则
 
 ## 技术架构
 
@@ -102,13 +108,14 @@ uvicorn main:app --reload
 sqlacodegen --outfile ./src/domain/models.py mysql://user:password@localhost:3306/lextrade
 ```
 
-## 开发规范
+## TODO
 
-- 遵循PEP 8编码规范
-- 使用类型注解
-- 编写单元测试
-- 保持领域层的纯粹性
-- 遵循DDD设计原则
+未来想要支持的功能和改进：
+
+- [x] 单元测试
+- [x] logger日志
+- [x] 更完善的异常处理
+- [x] 更利于ai理解的 `file content prompt`
 
 ## 许可证
 
