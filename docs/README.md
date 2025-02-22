@@ -9,6 +9,7 @@
 - [AI 交互指南](./ai-prompting-guide.md) - AI 辅助开发的最佳实践和提示词编写指南
 - [架构设计文档](./architecture-design.md) - 项目整体架构设计和技术选型说明
 - [开发规范](./development-guide.md) - 项目开发规范和最佳实践指南
+- [路由配置指南](./routing-guide.md) - FastAPI路由配置的最佳实践和DDD架构实现
 
 ### 待添加文档
 
