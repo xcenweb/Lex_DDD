@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.infrastructure.lifecycle import lifespan
 from src.infrastructure.exceptions import setup_exception_handlers
 from src.infrastructure.config import settings
+from src.interfaces.routers import api_router
 
 app = FastAPI(
     title="LexTrade API",
@@ -29,13 +30,14 @@ app.add_middleware(
 # 设置全局异常处理器
 setup_exception_handlers(app)
 
+# 注册API路由器
+app.include_router(api_router)
+
 @app.get("/")
 async def root():
     """
     根路径
     """
-    # 测试报错
-    1/0
     return {"message": "欢迎使用LexTrade API服务"}
 
 if __name__ == "__main__":

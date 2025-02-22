@@ -18,8 +18,17 @@ from src.interfaces.responses import create_response
 def setup_exception_handlers(app: FastAPI) -> None:
     """设置全局异常处理器
 
-    在生产环境下接管所有异常，在调试模式下保持原始错误处理行为
+    在生产、开发测试环境下接管所有异常，在调试模式下保持原始错误处理行为
     """
+    @app.exception_handler(404)
+    async def not_found_handler(request: Request, exc: HTTPException) -> JSONResponse:
+        """处理404错误"""
+        return create_response(
+            status_code=404,
+            message="请求的资源不存在"
+        )
+
+    # 在调试模式下保持原始错误处理行为
     if settings.DEBUG:
         return
 
