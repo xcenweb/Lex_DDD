@@ -26,10 +26,7 @@ async def lifespan(app: FastAPI):
         async with engine.connect() as conn:
             await conn.execute(text("SELECT 1"))
             print("数据库连接测试成功")
-
         yield
     finally:
         # 关闭时的清理操作
-        print("清理...")
-        await engine.dispose()
-        print("数据库连接池已关闭")
+        await engine.dispose() # 关闭数据库连接池

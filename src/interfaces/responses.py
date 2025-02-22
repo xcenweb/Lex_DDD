@@ -9,8 +9,8 @@ from fastapi.responses import JSONResponse
 
 def create_response(
     status_code: int = 200,
-    message: str = "操作成功",
-    data: Optional[Any] = None,
+    message: str = "成功",
+    data: Optional[Any] = [],
     detail: Optional[Any] = None
 ) -> JSONResponse:
     """创建统一格式的API响应
