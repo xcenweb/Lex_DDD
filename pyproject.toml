@@ -11,7 +11,6 @@ dependencies = [
     "fastapi (>=0.115.8,<0.116.0)",
     "uvicorn>=0.27.0",
     "sqlalchemy (>=2.0.38,<3.0.0)",
-    "mysqlclient (>=2.2.7,<3.0.0)",
     "sqlalchemy-utils (>=0.41.2,<0.42.0)",
     "sqlacodegen (==3.0.0rc5)",
     "aiomysql>=0.2.0",
