@@ -1,3 +1,7 @@
+"""
+应用生命周期
+"""
+
 from fastapi import FastAPI
 from sqlalchemy import text
 from contextlib import asynccontextmanager

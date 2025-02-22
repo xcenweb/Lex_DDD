@@ -1,5 +1,5 @@
 """
-配置
+系统配置
 """
 
 from typing import Optional

@@ -1,4 +1,7 @@
-"""数据库配置和连接管理"""
+"""
+数据库配置和连接管理
+"""
+
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 

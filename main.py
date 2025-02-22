@@ -1,13 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from src.infrastructure.lifecycle import lifespan
 from src.infrastructure.exceptions import setup_exception_handlers
+from src.infrastructure.config import settings
 
 app = FastAPI(
     title="LexTrade API",
     description="提示词分享、交易和测试平台的API服务",
     version="0.1.0",
     lifespan=lifespan,
+    debug=settings.DEBUG,
 
     docs_url="/docs",
     redoc_url="/redoc",
