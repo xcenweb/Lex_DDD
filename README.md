@@ -67,8 +67,8 @@ src/
 # 安装项目依赖
 poetry install
 
-# 激活虚拟环境
-poetry shell
+# 更新依赖
+poetry update
 ```
 
 ### 环境变量配置
@@ -94,7 +94,7 @@ uvicorn main:app --reload
 - API文档：http://localhost:8000/docs
 - 交互式API文档：http://localhost:8000/redoc
 
-## 数据库迁移
+## 数据库模型
 
 使用 SQLAlchemy 生成数据库模型：
 
