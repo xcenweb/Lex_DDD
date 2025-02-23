@@ -33,7 +33,7 @@ def generate_verification_code(length: int = 6) -> str:
     """
     return ''.join(random.choices(string.digits, k=length))
 
-@router.post("/send-verification-code")
+@router.get("/send-verification-code")
 async def test_send_verification_code(email: str):
     """测试发送验证码邮件
 

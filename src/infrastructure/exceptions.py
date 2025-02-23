@@ -28,6 +28,14 @@ def setup_exception_handlers(app: FastAPI) -> None:
             message="请求的资源不存在"
         )
 
+    @app.exception_handler(405)
+    async def method_not_allowed_handler(request: Request, exc: HTTPException) -> JSONResponse:
+        """处理405错误"""
+        return create_response(
+            status_code=405,
+            message="非法请求"
+        )
+
     # 在调试模式下保持原始错误处理行为
     if settings.DEBUG:
         return
