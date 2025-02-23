@@ -54,7 +54,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
         """处理数据库相关错误"""
         return create_response(
             status_code=500,
-            message="数据库操作失败",
+            message="业务异常",
             detail=str(exc) if settings.DEBUG else None
         )
 
@@ -72,7 +72,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
         """处理所有未被捕获的异常"""
         return create_response(
             status_code=500,
-            message="服务器内部错误",
+            message="服务器抛出一个错误",
             detail=format_exception(exc) if settings.DEBUG else None
         )
 

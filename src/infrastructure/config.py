@@ -27,8 +27,7 @@ class Settings():
     SMTP_USERNAME: str = os.getenv("LEX_SMTP_USERNAME")
     SMTP_PASSWORD: str = os.getenv("LEX_SMTP_PASSWORD")
     SMTP_DEFAULT_SENDER: str = os.getenv("LEX_SMTP_DEFAULT_SENDER")
-    SMTP_USE_TLS: bool = os.getenv("LEX_SMTP_USE_TLS").lower() == "true"
+    SMTP_USE_PROTOCOL: str = os.getenv("LEX_SMTP_USE_PROTOCOL", "tls").lower()
 
 # 创建配置类实例
 settings = Settings()
-print(settings.DEBUG)

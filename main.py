@@ -47,7 +47,6 @@ async def root():
     """
     根路径
     """
-    1/0
     return {"message": "欢迎使用LexTrade API服务"}
 
 if __name__ == "__main__":

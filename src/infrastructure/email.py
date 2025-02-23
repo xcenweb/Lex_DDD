@@ -20,7 +20,7 @@ class EmailService:
         username: str,
         password: str,
         default_sender: str = None,
-        use_tls: bool = True
+        use_protocol: str = "tls"
     ):
         """初始化邮件服务
 
@@ -30,14 +30,14 @@ class EmailService:
             username: SMTP认证用户名
             password: SMTP认证密码
             default_sender: 默认发件人
-            use_tls: 是否使用TLS加密
+            use_protocol: 使用的加密协议（tls或ssl）
         """
         self.smtp_host = smtp_host
         self.smtp_port = smtp_port
         self.username = username
         self.password = password
         self.default_sender = default_sender or username
-        self.use_tls = use_tls
+        self.use_protocol = use_protocol.lower()
 
     async def send_email(
         self,
@@ -77,35 +77,15 @@ class EmailService:
                     msg.attach(part)
 
         # 发送邮件
-        async with aiosmtplib.SMTP(hostname=self.smtp_host, port=self.smtp_port) as server:
-            if self.use_tls:
-                await server.starttls()
-            await server.login(self.username, self.password)
-            await server.send_message(msg)
-
-    async def send_verification_code(
-        self,
-        to_addr: str,
-        code: str,
-        expire_minutes: int = 10
-    ) -> None:
-        """发送验证码邮件
-
-        Args:
-            to_addr: 收件人邮箱
-            code: 验证码
-            expire_minutes: 验证码有效期（分钟）
-        """
-        subject = 'LexTrade验证码'
-        content = f"""
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">验证码</h2>
-            <p style="color: #666;">您的验证码是：</p>
-            <div style="background-color: #f5f5f5; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; color: #333; margin: 20px 0;">
-                {code}
-            </div>
-            <p style="color: #999; font-size: 14px;">验证码有效期为{expire_minutes}分钟，请尽快使用。</p>
-            <p style="color: #999; font-size: 14px;">如果这不是您的操作，请忽略此邮件。</p>
-        </div>
-        """
-        await self.send_email([to_addr], subject, content, html=True)
+        if self.use_protocol == 'ssl':
+            # 使用SSL连接
+            async with aiosmtplib.SMTP(hostname=self.smtp_host, port=self.smtp_port, use_tls=True) as server:
+                await server.login(self.username, self.password)
+                await server.send_message(msg)
+        else:
+            # 使用普通连接或TLS
+            async with aiosmtplib.SMTP(hostname=self.smtp_host, port=self.smtp_port) as server:
+                if self.use_protocol == 'tls':
+                    await server.starttls()
+                await server.login(self.username, self.password)
+                await server.send_message(msg)
