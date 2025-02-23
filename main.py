@@ -6,11 +6,11 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from src.infrastructure.lifecycle import lifespan
 from src.infrastructure.exceptions import setup_exception_handlers
 from src.infrastructure.config import settings
-from src.interfaces.routers import api_router
+
 
 app = FastAPI(
-    title="Lex",
-    description="Lex",
+    title="LexTrade API",
+    description="提示词分享、交易和测试平台的API服务",
     version="0.1.0",
     lifespan=lifespan,
     debug=settings.DEBUG,
@@ -39,6 +39,7 @@ app.add_middleware(
 setup_exception_handlers(app)
 
 # 注册API路由器
+from src.interfaces.routers import api_router
 app.include_router(api_router)
 
 @app.get("/")

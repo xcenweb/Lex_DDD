@@ -11,4 +11,6 @@ api_router = APIRouter(prefix="/api")
 # 导入并注册子路由器
 # 随着业务模块的增加，在这里添加新的路由器
 from .user import router as user_router
+from .test import router as test_router
 api_router.include_router(user_router)
+api_router.include_router(test_router)
