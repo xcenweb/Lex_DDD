@@ -9,8 +9,8 @@ from src.infrastructure.config import settings
 from src.interfaces.routers import api_router
 
 app = FastAPI(
-    title="LexTrade API",
-    description="提示词分享、交易和测试平台的API服务",
+    title="Lex",
+    description="Lex",
     version="0.1.0",
     lifespan=lifespan,
     debug=settings.DEBUG,
