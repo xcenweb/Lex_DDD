@@ -1,4 +1,4 @@
-# LexTrade Backend
+# LexDDD Backend
 
 ## 项目介绍
 
