@@ -92,7 +92,7 @@ class Order:
     amount: float
     status: str
     created_at: datetime
-    
+
     def validate(self) -> None:
         if self.amount <= 0:
             raise ValueError("订单金额必须大于0")
@@ -152,15 +152,15 @@ def get_user_orders(
     limit: Optional[int] = 100
 ) -> List[Order]:
     """获取用户订单列表
-    
+
     Args:
         user_id: 用户ID
         session: 数据库会话
         limit: 返回结果数量限制
-        
+
     Returns:
         List[Order]: 订单列表
-        
+
     Raises:
         DatabaseError: 数据库查询异常
     """
@@ -182,3 +182,77 @@ def get_user_orders(
 - [模块文档](modules/) - 查看各模块的详细说明
 - [AI提示词指南](ai-prompts.md) - 更多AI开发相关内容
 - [常见问题](faq.md) - 解答常见问题
+
+## 项目基础说明
+
+```
+### 技术栈
+
+- **Web框架**：FastAPI - 高性能异步Web框架
+- **ORM**：SQLAlchemy - 功能强大的数据库ORM工具
+- **数据验证**：Pydantic - 数据模型验证和序列化
+- **测试框架**：Pytest - 现代化的Python测试工具
+
+### DDD架构说明
+
+项目严格遵循DDD（领域驱动设计）架构，各层职责如下：
+
+1. **领域层（Domain）**
+   - 定义核心业务实体和值对象
+   - 实现领域服务和领域事件
+   - 定义仓储接口
+
+2. **应用层（Application）**
+   - 编排领域对象
+   - 处理业务用例
+   - 实现事务管理
+
+3. **基础设施层（Infrastructure）**
+   - 提供技术实现
+   - 实现仓储接口
+   - 集成外部服务
+
+4. **接口层（Interfaces）**
+   - 处理HTTP请求
+   - 实现API接口
+   - 处理用户认证
+
+### 核心业务领域
+
+1. **交易管理**
+   - 订单创建和管理
+   - 交易执行和监控
+   - 风险控制
+
+2. **用户管理**
+   - 用户认证和授权
+   - 账户管理
+   - 权限控制
+
+3. **资产管理**
+   - 资金账户
+   - 持仓管理
+   - 资产统计
+
+### 主要功能模块
+
+1. **交易核心**
+   - 订单路由
+   - 执行引擎
+   - 清算结算
+
+2. **风控系统**
+   - 实时风控
+   - 限额管理
+   - 风险预警
+
+3. **市场数据**
+   - 行情接入
+   - 数据存储
+   - 实时推送
+
+4. **运营管理**
+   - 系统监控
+   - 日志管理
+   - 报表统计
+```
