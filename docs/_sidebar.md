@@ -1,5 +1,12 @@
-* 开发指南
-  * [AI 交互指南](ai-prompting-guide.md)
-  * [架构设计文档](architecture-design.md)
-  * [开发规范](development-guide.md)
-  * [路由配置指南](routing-guide.md)
+* [项目介绍](README.md)
+* [架构设计](architecture.md)
+* 模块文档
+  * [应用层](modules/application.md)
+  * [领域层](modules/domain.md)
+  * [基础设施层](modules/infrastructure.md)
+  * [接口层](modules/interfaces.md)
+* [AI提示词指南](ai-prompts.md)
+  * [项目初始化](ai-prompts/initialization.md)
+  * [开发管理](ai-prompts/development.md)
+  * [代码生成](ai-prompts/code-generation.md)
+* [常见问题](faq.md)

@@ -28,6 +28,11 @@ class Settings():
     SMTP_PASSWORD: str = os.getenv("LEX_SMTP_PASSWORD")
     SMTP_DEFAULT_SENDER: str = os.getenv("LEX_SMTP_DEFAULT_SENDER")
     SMTP_USE_PROTOCOL: str = os.getenv("LEX_SMTP_USE_PROTOCOL", "tls").lower()
+    # 阿里云短信服务配置
+    SMS_ACCESS_KEY_ID: str = os.getenv("LEX_SMS_ACCESS_KEY_ID")
+    SMS_ACCESS_KEY_SECRET: str = os.getenv("LEX_SMS_ACCESS_KEY_SECRET")
+    SMS_SIGN_NAME: str = os.getenv("LEX_SMS_SIGN_NAME")
+    SMS_ENDPOINT: str = os.getenv("LEX_SMS_ENDPOINT", "dysmsapi.aliyuncs.com")
 
 # 创建配置类实例
 settings = Settings()

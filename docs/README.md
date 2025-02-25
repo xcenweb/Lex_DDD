@@ -1,32 +1,184 @@
-# LexDDD 项目文档
+# LexTrade Backend
 
-欢迎来到 LexDDD 项目的文档中心。这里包含了项目的所有技术文档、使用指南和开发规范。
+## 项目介绍
 
-## 文档目录
+LexTrade Backend 是一个基于Python的交易系统后端，采用领域驱动设计（DDD）架构，提供高性能、可扩展的交易服务。
 
-### 开发指南
+## 项目特点
 
-- [AI 交互指南](./ai-prompting-guide.md) - AI 辅助开发的最佳实践和提示词编写指南
-- [架构设计文档](./architecture-design.md) - 项目整体架构设计和技术选型说明
-- [开发规范](./development-guide.md) - 项目开发规范和最佳实践指南
-- [路由配置指南](./routing-guide.md) - FastAPI路由配置的最佳实践和DDD架构实现
+- 基于DDD架构，代码结构清晰，易于维护
+- 完善的异常处理机制
+- 集成日志系统，便于问题追踪
+- 完整的单元测试覆盖
+- AI友好的开发流程
 
-### 待添加文档
+## 快速开始
 
-以下是计划添加的文档：
+### 环境要求
 
-- API 接口文档
-- 部署指南
-- 测试规范
-- 贡献指南
+- Python 3.8+
+- Poetry
 
-## 文档更新
+### 安装依赖
 
-我们会持续更新和完善项目文档。如果你发现文档中存在问题或有改进建议，欢迎提出 Issue 或 Pull Request。
+```bash
+poetry install
+```
 
-## 文档规范
+### 运行项目
 
-- 所有文档采用 Markdown 格式编写
-- 文档语言默认使用中文
-- 技术名词保持原有英文
-- 代码示例需要包含注释说明
+```bash
+poetry run python main.py
+```
+
+## AI开发指南
+
+本项目支持通过AI辅助进行开发。以下是一些常用的AI提示词模板及其示例结果：
+
+### 项目初始化
+
+示例提示词：
+```
+我正在开发一个Python交易系统后端项目，使用DDD架构。请帮我：
+1. 创建基本的项目结构
+2. 设置必要的配置文件
+3. 初始化依赖管理
+```
+
+示例结果：
+```
+已为您创建以下项目结构：
+
+src/
+├── domain/          # 领域层：包含核心业务逻辑
+├── application/     # 应用层：处理用例和业务流程
+├── infrastructure/  # 基础设施层：提供技术实现
+└── interfaces/      # 接口层：处理外部请求
+
+配置文件：
+- pyproject.toml     # Poetry依赖管理
+- .env.example       # 环境变量模板
+- config.py         # 应用配置
+
+已初始化基本依赖：
+- fastapi           # Web框架
+- sqlalchemy        # ORM
+- pydantic         # 数据验证
+- pytest           # 测试框架
+```
+
+### 新功能开发
+
+示例提示词：
+```
+请帮我在交易模块中实现订单创建功能：
+1. 遵循DDD架构原则
+2. 包含必要的异常处理
+3. 添加相应的单元测试
+4. 确保代码风格符合项目规范
+```
+
+示例结果：
+```python
+# domain/order.py
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Optional
+
+@dataclass
+class Order:
+    id: str
+    user_id: str
+    amount: float
+    status: str
+    created_at: datetime
+    
+    def validate(self) -> None:
+        if self.amount <= 0:
+            raise ValueError("订单金额必须大于0")
+
+# application/order_service.py
+class OrderService:
+    def create_order(self, user_id: str, amount: float) -> Order:
+        try:
+            order = Order(
+                id=generate_order_id(),
+                user_id=user_id,
+                amount=amount,
+                status="pending",
+                created_at=datetime.now()
+            )
+            order.validate()
+            return self.order_repository.save(order)
+        except Exception as e:
+            logger.error(f"创建订单失败：{str(e)}")
+            raise OrderCreationError(str(e))
+
+# test/test_order.py
+def test_create_order():
+    service = OrderService()
+    order = service.create_order("user123", 100.0)
+    assert order.user_id == "user123"
+    assert order.amount == 100.0
+    assert order.status == "pending"
+```
+
+### 代码优化
+
+示例提示词：
+```
+请帮我优化以下订单查询代码：
+
+def get_user_orders(user_id):
+    orders = db.query("SELECT * FROM orders WHERE user_id = %s", user_id)
+    return orders
+
+要求：
+1. 提高性能
+2. 增强可读性
+3. 完善错误处理
+4. 添加必要的注释
+```
+
+示例结果：
+```python
+from typing import List, Optional
+from sqlalchemy.orm import Session
+from .models import Order
+
+def get_user_orders(
+    user_id: str,
+    session: Session,
+    limit: Optional[int] = 100
+) -> List[Order]:
+    """获取用户订单列表
+    
+    Args:
+        user_id: 用户ID
+        session: 数据库会话
+        limit: 返回结果数量限制
+        
+    Returns:
+        List[Order]: 订单列表
+        
+    Raises:
+        DatabaseError: 数据库查询异常
+    """
+    try:
+        # 使用索引优化查询性能
+        return session.query(Order)\
+            .filter(Order.user_id == user_id)\
+            .order_by(Order.created_at.desc())\
+            .limit(limit)\
+            .all()
+    except Exception as e:
+        logger.error(f"查询用户{user_id}的订单失败：{str(e)}")
+        raise DatabaseError(f"订单查询失败：{str(e)}")
+```
+
+## 文档导航
+
+- [架构设计](architecture.md) - 了解项目的整体架构
+- [模块文档](modules/) - 查看各模块的详细说明
+- [AI提示词指南](ai-prompts.md) - 更多AI开发相关内容
+- [常见问题](faq.md) - 解答常见问题
