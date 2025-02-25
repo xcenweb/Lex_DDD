@@ -1,9 +1,16 @@
 * [项目介绍](README.md)
 * [架构设计](architecture.md)
-* 模块文档
+* DDD架构层
   * [应用层](modules/application.md)
   * [领域层](modules/domain.md)
   * [基础设施层](modules/infrastructure.md)
+    * [配置管理](modules/infrastructure/config.md)
+    * [数据库](modules/infrastructure/database.md)
+    * [邮件服务](modules/infrastructure/email.md)
+    * [异常处理](modules/infrastructure/exceptions.md)
+    * [生命周期](modules/infrastructure/lifecycle.md)
+    * [数据模型](modules/infrastructure/models.md)
+    * [短信服务](modules/infrastructure/sms.md)
   * [接口层](modules/interfaces.md)
 * [AI提示词指南](ai-prompts.md)
   * [项目初始化](ai-prompts/initialization.md)
