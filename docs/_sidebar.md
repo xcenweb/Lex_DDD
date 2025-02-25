@@ -1,6 +1,6 @@
 * [项目介绍](README.md)
 * [架构设计](architecture.md)
-* DDD架构层
+* 模块文档
   * [应用层](modules/application.md)
   * [领域层](modules/domain.md)
   * [基础设施层](modules/infrastructure.md)
