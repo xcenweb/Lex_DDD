@@ -12,34 +12,13 @@
 
 ## 核心组件
 
-### Responses
+### [响应组件 (Responses)](interfaces/responses.md)
 
-`responses.py` 负责定义统一的响应格式和数据模型：
+响应组件负责定义统一的响应格式和数据模型，确保系统返回一致的数据结构。详细信息请参考[响应组件文档](interfaces/responses.md)。
 
-```python
-# 示例响应模型
-from pydantic import BaseModel
+### [路由组件 (Routers)](interfaces/routers.md)
 
-class BaseResponse(BaseModel):
-    code: int
-    message: str
-    data: dict | None
-```
-
-### Routers
-
-`routers/` 目录包含所有API路由定义：
-
-```python
-# 示例路由定义
-from fastapi import APIRouter, Depends
-
-router = APIRouter(prefix="/api/v1")
-
-@router.get("/resource")
-async def get_resource():
-    return {"data": "resource"}
-```
+路由组件采用模块化设计，包含所有API路由定义。系统实现了自动路由注册机制，会自动扫描并注册路由模块。详细信息请参考[路由组件文档](interfaces/routers.md)。
 
 ## 开发指南
 

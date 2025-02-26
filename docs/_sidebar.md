@@ -12,6 +12,8 @@
     * [数据模型](modules/infrastructure/models.md)
     * [短信服务](modules/infrastructure/sms.md)
   * [接口层](modules/interfaces.md)
+    * [响应组件](modules/interfaces/responses.md)
+    * [路由组件](modules/interfaces/routers.md)
 * [AI提示词指南](ai-prompts.md)
   * [项目初始化](ai-prompts/initialization.md)
   * [开发管理](ai-prompts/development.md)
