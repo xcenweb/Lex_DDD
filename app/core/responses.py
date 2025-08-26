@@ -1,0 +1,32 @@
+"""响应处理模块
+
+提供统一的API响应格式处理
+"""
+from typing import Any, Optional
+from fastapi.responses import JSONResponse
+
+def create_response(
+    code: int = 200,
+    message: str = "成功",
+    data: Optional[Any] = [],
+) -> JSONResponse:
+    """创建统一格式的API响应
+
+    Args:
+        code: HTTP状态码
+        message: 响应消息
+        data: 响应数据
+        detail: 详细信息（通常用于调试）
+
+    Returns:
+        JSONResponse: FastAPI的JSON响应对象
+    """
+
+    return JSONResponse(
+        status_code=code,
+        content={
+            "code": code,
+            "msg": message,
+            "data": data
+        }
+    )

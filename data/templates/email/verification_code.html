@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LexTrade 验证码</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+        }
+        .code {
+            font-size: 32px;
+            font-weight: bold;
+            color: #007bff;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .note {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>LexTrade 验证码</h2>
+        <p>您好！</p>
+        <p>您的验证码是：</p>
+        <div class="code">{code}</div>
+        <p class="note">此验证码有效期为{exp}分钟，请勿将验证码泄露给他人。</p>
+        <p class="note">如果这不是您的操作，请忽略此邮件。</p>
+    </div>
+</body>
+</html>
